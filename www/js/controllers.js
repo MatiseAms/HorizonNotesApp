@@ -86,6 +86,7 @@ angular.module('starter.controllers', [])
 			}
 		}, 300);
 
+
 	}])
 	.controller('PlaylistCtrl', function($scope, $stateParams) {
 
@@ -95,14 +96,7 @@ angular.module('starter.controllers', [])
 		// }).subscribeTo(room, ['onConnected', 'onDisconnected', 'onCreated', 'onDestroyed', 'onJoined', 'onHasLeft', 'onData', 'onError']);
 
 
-		var room = new MAF.Room('IfWzf');
-		console.log(room);
 
-		room.addEventListener('joined', function(event) {
-			// A client has joined
-			console.log('user joined', event.user);
-		});
-		room.join();
 	})
 	.controller('LoginCtrl', ['$scope', '$state', '$q', '$cordovaFacebook', '$rootScope', '$ionicHistory', function($scope, $state, $q, $cordovaFacebook, $rootScope, $ionicHistory) {
 
@@ -122,13 +116,9 @@ angular.module('starter.controllers', [])
 					"expiration_date": expiration_date
 				};
 
-				return getFacebookProfileInfo(authResponse);
-			}).then(function(profileInfo) {
-				// For the purpose of this example I will store user data on local storage
-
-				console.log('userId: ' + profileInfo.id);
-				console.log('name: ' + profileInfo.name);
-				console.log('email: ' + profileInfo.email);
+				// console.log('userId: ' + profileInfo.id);
+				// console.log('name: ' + profileInfo.name);
+				// console.log('email: ' + profileInfo.email);
 			}, function(fail) {
 				// Fail get profile info
 				console.log('profile info fail', fail);
