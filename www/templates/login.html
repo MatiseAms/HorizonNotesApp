@@ -6,21 +6,25 @@
 		</div>
 	</ion-header-bar>
 	<ion-pane class="ion-content-view" delegate-handle="mainScroll">
+    <div class="container">
+      <div class="container_block white">
+        <form ng-submit="doLogin()">
+    			<label>Username</label>
+    			<input type="text" placeholder="Babe Piglet" ng-model="loginData.username">
 
-		<form ng-submit="doLogin()">
-			<label>Username</label>
-			<input type="text" placeholder="Babe Piglet" ng-model="loginData.username">
+    			<label>Password</label>
+    			<input type="password" placeholder="Av3RYH4rdP4SsW0rd" ng-model="loginData.password">
 
-			<label>Password</label>
-			<input type="password" placeholder="Av3RYH4rdP4SsW0rd" ng-model="loginData.password">
+    			<button class="btn-ghost btn-round" type="submit">Log in</button>
 
-			<button class="btn-ghost btn-round" type="submit">Log in</button>
+    			<div class="spacer">of</div>
 
-			<div class="spacer">of</div>
-
-			<a class="btn-facebook btn-round" ng-click="loginFacebook()">Facebook Login</a>
-		</form>
-
-		<div class="logo light animate-rotate"></div>
+    			<a class="button rounded facebook" ng-click="loginFacebook()">Facebook Login</a>
+    		</form>
+      </div>
+      <div class="container_block green">
+        <!-- <h1>We couldn’t even hear a cricket on your telly...</h1> -->
+      </div>
+    </div>
 	</ion-pane>
 </ion-view>

@@ -1,13 +1,16 @@
 
-.button{ width: rem(60); height: rem(60); font-size: 1rem; position: relative;
+.button{ width: auto; height: rem(60); font-size: 1rem; position: relative; line-height: rem(60); padding: 0 1.5rem;
   &.black{ background-color: color(zwart); color: color(groen); }
   &.white{ background-color: color(wit); color: color(zwart); }
   &.green{ background-color: color(groen); color: color(zwart); }
 
+  @each $color in $social-colors{
+    &.#{nth($color,1)}{ background-color: #{nth($color,2)}; color: white; }
+  }
   &.float-right{ float: right; }
   &.float-left{ float: left; }
 
-  &.round{ border-radius: rem(30); }
+  &.round{ width: auto; border-radius: rem(30); }
   &.black{ background-color: color(zwart); }
   &.large{ width: rem(120); height: rem(120); line-height: rem(120); font-size: 2rem;
     &.round{ border-radius: rem(60); }
