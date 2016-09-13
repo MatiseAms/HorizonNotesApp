@@ -65,18 +65,52 @@ angular.module('starter.controllers', [])
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 
-	// var room = new MAF.Room('MatiseFissa');
-	// (function(event) {
-	// 	console.log(event.type, event.payload);
-	// }).subscribeTo(room, ['onConnected', 'onDisconnected', 'onCreated', 'onDestroyed', 'onJoined', 'onHasLeft', 'onData', 'onError']);
+		// var room = new MAF.Room('MatiseFissa');
+		// (function(event) {
+		// 	console.log(event.type, event.payload);
+		// }).subscribeTo(room, ['onConnected', 'onDisconnected', 'onCreated', 'onDestroyed', 'onJoined', 'onHasLeft', 'onData', 'onError']);
 
 
-	var room = new MAF.Room('IfWzf');
-	console.log(room);
+		var room = new MAF.Room('IfWzf');
+		console.log(room);
 
-	room.addEventListener('joined', function(event) {
-		// A client has joined
-		console.log('user joined', event.user);
-	});
-	room.join();
-});
+		room.addEventListener('joined', function(event) {
+			// A client has joined
+			console.log('user joined', event.user);
+		});
+		room.join();
+	})
+	.controller('LoginCtrl', ['$scope', '$state', '$q', '$cordovaFacebook', '$rootScope', '$ionicHistory', function($scope, $state, $q, $cordovaFacebook, $rootScope, $ionicHistory) {
+
+
+		$scope.loginFacebook = function() {
+
+			$cordovaFacebook.login(["public_profile", "email"]).then(function(success) {
+				console.log(success);
+
+				//Need to convert expiresIn format from FB to date
+				var expiration_date = new Date();
+				expiration_date.setSeconds(expiration_date.getSeconds() + success.authResponse.expiresIn);
+				expiration_date = expiration_date.toISOString();
+
+				var facebookAuthData = {
+					"id": success.authResponse.userID,
+					"access_token": success.authResponse.accessToken,
+					"expiration_date": expiration_date
+				};
+
+				return getFacebookProfileInfo(authResponse);
+			}).then(function(profileInfo) {
+				// For the purpose of this example I will store user data on local storage
+
+				console.log('userId: ' + profileInfo.id);
+				console.log('name: ' + profileInfo.name);
+				console.log('email: ' + profileInfo.email);
+			}, function(fail) {
+				// Fail get profile info
+				console.log('profile info fail', fail);
+			});
+
+		};
+
+	}]);
