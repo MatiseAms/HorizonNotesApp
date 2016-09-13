@@ -1,0 +1,70 @@
+
+@function elementCount($end){
+  $elements: ();
+  @for $i from 1 through $end{
+      $element: '&:nth-child(#{$i}):nth-last-child(#{(($end + 1) - $i)}),';
+      $elements: prepend($element,$elements);
+  }
+  @return $elements;
+}
+
+
+@mixin createElements($amount,$type: false){
+  @for $i from 1 through $amount{
+    @if $type == false{
+      #{elementCount($i)}{
+        @content;
+      }
+    } @else if $type == 'width'{
+      #{elementCount($i)}{
+       width: percentage(1/$i);
+      }
+    }
+  }
+}
+
+@mixin default($values){
+  $returned: false;
+  $hover: false;
+  $elements: background-image,background-color,background,font-size,font-weight,border-color,border-style,border-width;
+
+  @each $value in $values{
+    // @debug $value;
+
+    @if map-has-key($defaults,$value) == false{
+      @warn '#{$value} has no default';
+    }
+
+    // Exceptional Pseudo elements
+    @else if str-contains('placeholder',$value){
+      @include placeholder(){
+        color: default($value);
+      }
+    } @else {
+      // Default Elements
+      // Check its a hover
+      @if str-contains('hover',$value){ $hover: true; }
+
+      // Do everything by element
+      @each $element in $elements{
+        @if $returned == false{
+          @if str-contains($element,$value){
+            // @debug '#{$value}: #{default($value)}';
+            @if $hover == true{
+              &:hover{
+                #{$element}: default($value);
+              }
+            } @else {
+              #{$element}: default($value);
+            }
+            $returned: true;
+          }
+        }
+      }
+    }
+    // If its not in a value but its still an element which you wanna have..
+    @if $returned == false{
+      #{$value}: default($value);
+    }
+  }
+}

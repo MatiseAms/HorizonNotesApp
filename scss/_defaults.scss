@@ -1,0 +1,76 @@
+$defaults:(
+  "line-color": color(grijs),
+
+// Button
+  "button-font-size": 18px, /* Preferably same as Input-font-size */
+  "button-background": color(groen),
+  "button-color": color(wit),
+  "button-border-color": transparent,
+  "button-box-shadow": "1px 1px 2px 2px white inset",
+
+// Text
+  "text-color": color(zwart),
+  "text-size": 18px,
+
+// Headings
+  "heading-text-color": color(groen),
+  "heading-font-size": 2rem,
+
+// Input
+  "input-background": color(wit),
+  "input-text-color": color(zwart),
+  "input-placeholder-text-color": color(zwart,.2),
+  "input-border-color": color(grijs),
+  "input-font-size": 18px, /* Preferably same as Button-font-size */
+
+// Animation
+  "transition-time": .3,
+  "cubic-bezier": ".75,.75,.25,.50",
+  "heavy-cubic-bezier": ".1,1.5,.9,.5",
+
+// Border
+  "border-radius": 4px,
+  "border-radius-rounded": .5rem,
+  "border-radius-round": 50%,
+
+// Paths
+  "img-path": "../img",
+  "font-path": "../fonts",
+
+// Fonts
+  "font-size": 16, // !warning: Sets all rem sizes too
+  "font-line-height": 	1.5,
+  "font-letter-spacing": 50,
+  "font-cap-height": 0.68,
+//
+  "space": 20px,
+
+// Ending Defaults
+  "":"" /* just to stop without the comma */
+);
+
+
+// Setting Variables
+$main-font-family: '';
+$base-img-dir: default('img-dir');
+$base-font-size: default('font-size');
+$base-line-height: 	default('font-line-height');
+$base-letter-spacing: default('font-letter-spacing');
+$base-fontpath: default('font-path');
+
+// this value may vary for each font
+// unitless value relative to 1em
+$cap-height: 	default('font-cap-height');
+
+// main
+$transition-time: default('transition-time');
+$transition: #{default('transition-time')}s;
+$border-radius: default('border-radius');
+$round-border-radius:default('border-radius-rounded');
+$border-round: default('border-radius-round');
+$space: default('space');
+
+$cubic-bezier: cubic-bezier(default('cubic-bezier'));
+$bezier: $cubic-bezier;
+$heavy-cubic-bezier: cubic-bezier(default('heavy-cubic-bezier'));
+$heavy-bezier: $heavy-cubic-bezier;

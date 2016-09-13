@@ -1,0 +1,17 @@
+
+// main styles
+@import
+  "functions",
+  "colors",
+  "ionic/scss/ionic",
+  "mixins",
+  "defaults",
+  "typography",
+  "base",
+  // "ionic",
+  "elements";
+
+  $ionicons-font-path: "../lib/ionic/fonts" !default;
+// Include all of Ionic
+
+body{ background: color(groen); }

@@ -1,0 +1,25 @@
+
+@mixin background($url,$size: contain,$position: center center, $repeat: no-repeat){
+  background-image: url(#{$base-img-dir}/#{$url});
+	background-size: $size;
+  background-position: $position;
+  background-repeat: $repeat;
+}
+
+@mixin radial-gradient($from, $to) {
+  background: -moz-radial-gradient(center, circle cover, $from 0%, $to 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, $from), color-stop(100%, $to));
+  background: -webkit-radial-gradient(center, circle cover, $from 0%, $to 100%);
+  background: -o-radial-gradient(center, circle cover, $from 0%, $to 100%);
+  background: -ms-radial-gradient(center, circle cover, $from 0%, $to 100%);
+  background: radial-gradient(center, circle cover, $from 0%, $to 100%);
+  background-color: $from;
+}
+
+@mixin linear-gradient($from, $to) {
+  background: -webkit-linear-gradient($from, $to); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient($from, $to); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient($from, $to); /* For Firefox 3.6 to 15 */
+  background: linear-gradient($from, $to); /* Standard syntax */
+  background-color: $from;
+}
