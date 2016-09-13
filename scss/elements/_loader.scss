@@ -1,5 +1,5 @@
 $loader-height: 4;
-.loader{ width: 200px; height: #{$loader-height}px; background: color(grijs); border-radius: #{$loader-height/2}px;
+.loader{ width: 220px; height: #{$loader-height}px; background: color(grijs); border-radius: #{$loader-height/2}px; position: relative; top: 10px;
   &:before{ content: ""; display: block; height: #{$loader-height}px; content:""; background: color(groen); border-radius: #{$loader-height/2}px; transition: .2s; }
   @for $i from 1 through 100 {
     &[data-load="#{$i}"]:before{ width: percentage($i/100); }
