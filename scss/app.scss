@@ -17,13 +17,11 @@
 body{ background: color(groen); }
 
 .container{ min-height: 100vh; background: color(grijs);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  &_block{ padding: 50px 50px 50px 50px; width: 100%; flex: auto;
-    &:first-child(){  align-self: flex-start; padding-top: 100px; }
-    &:last-child(){  align-self: flex-end; }
+  &_block{ padding: 2rem 40px 2rem 40px; width: 100%;
+    &:first-child(){ padding-top: 100px;
+      h1{ margin-top: 1.5rem; }
+    }
+    &:last-child(){ padding-bottom: 40px; }
     &.white{ background: color(wit); }
     &.green{ background: color(groen); }
 
@@ -33,13 +31,18 @@ body{ background: color(groen); }
 div.title.title-center.header-item{ left: 0 !important; }
 .title{ height: 100px; line-height: 100px; width: 100%;
   background-image: url('../img/logo.svg'); left: 0; text-indent: -999em;
-  background-repeat: no-repeat; background-position: 45px center;
+  background-repeat: no-repeat; background-position: 35px center;
 }
 
-.menuToggle{ width: 100px; height: 100px; position: absolute; right: 0px; top: 0px;
+.menuToggle{ width: 100px; height: 100px; position: absolute; right: 20px; top: 0px;
   span{ @include menu(rem(30),rem(2),rem(6),black);
     @include menu-body-middle{ width: rem(20); }
   }
+}
+.activated + .menuToggle span{
+  @include menu-body-first{ width: rem(20); }
+  @include menu-body-middle{ width: rem(30); }
+  @include menu-body-last{ width: rem(20); }
 }
 
 
@@ -49,5 +52,11 @@ div.title.title-center.header-item{ left: 0 !important; }
 }
 
 #play{
-  .timer{ margin-top: 2rem; }
+  .timer{ margin-top: 2rem; margin-bottom: -2rem;  }
+}
+
+.buttons{
+  .right-buttons{
+    button{ height: 100px !important; margin-top: 25px; text-indent: -999em; }
+  }
 }

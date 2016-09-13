@@ -57,8 +57,8 @@
   left: 0;
 }
 
-.menu-right {
-  right: 0;
+.menu-right { right: 0;
+  .scroll{ padding-top: 100px; }
 }
 
 .aside-open.aside-resizing .menu-right {

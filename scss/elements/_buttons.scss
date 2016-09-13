@@ -1,8 +1,14 @@
 
 .button{ width: auto; height: rem(60); font-size: 1rem; position: relative; line-height: rem(60); padding: 0 1.5rem;
-  &.black{ background-color: color(zwart); color: color(groen); }
-  &.white{ background-color: color(wit); color: color(zwart); }
-  &.green{ background-color: color(groen); color: color(zwart); }
+  &.black{ background-color: color(zwart); color: color(groen);
+   &.go{ background-image: url('../img/go-groen.svg'); }
+  }
+  &.white{ background-color: color(wit); color: color(zwart);
+    &.go{ background-image: url('../img/go-wit.svg'); }
+  }
+  &.green{ background-color: color(groen); color: color(zwart);
+    &.go{ background-image: url('../img/go-zwart.svg'); }
+  }
 
   @each $color in $social-colors{
     &.#{nth($color,1)}{ background-color: #{nth($color,2)}; color: white; }
@@ -18,5 +24,10 @@
 
   &.horizon-line{
     &:before{ content: ""; width: 2rem; height: 4px; display: block; background: color(groen);  border-radius: 2px; position: absolute; left: 0px; top: 50%; transform: translate(-50%,-50%); }
+  }
+  &.go{ text-indent: -999em;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50px;
   }
 }

@@ -1,8 +1,8 @@
 %form-button-basic{
-  line-height: 1.25rem; padding: .5rem 1rem; border: none; border-radius: none; font-size: rem(30); width: 100%; height: rem(60); line-height: rem(30); padding: rem(15) 0; background: none; color: color(wit); font-family: $main-font; font-weight: $font-bold; box-shadow: 0 0px 0 0 color(wit) inset; transition: $transition $bezier;
+  padding: .5rem 1rem; border: none; border-radius: none; font-size: rem(24); width: 100%; height: rem(50); line-height: rem(30); padding: rem(10) 0; background: none; color: color(wit); font-family: $main-font; font-weight: $font-bold; box-shadow: 0 0px 0 0 color(wit) inset; transition: $transition $bezier;
   @include placeholder(){ color: color(zwart,.25);
   }
-  &:focus{ box-shadow: 0 -4px 0 0 color(wit) inset; }
+  // &:focus{ box-shadow: 0 -4px 0 0 color(wit) inset; }
   .white &{ color: color(groen); }
 }
 
