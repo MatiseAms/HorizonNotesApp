@@ -1,0 +1,93 @@
+$main-font-weights: (
+	"Bold": 700,
+	"Medium": 500
+);
+// $second-font-weights: (
+// 	"Semibold": 450,
+// );
+
+// @TO DO, check font weight!!!
+// $font-book: map-get($main-font-weights,Book);
+$font-medium: map-get($main-font-weights,Medium);
+$font-bold: map-get($main-font-weights,Bold);
+// $font-black: map-get($main-font-weights,Black);
+// $font-semibold: map-get($second-font-weights, Semibold);
+// Base font
+/*
+	Use font-include for single fonts
+	and font-list for a list using the $*-font-weights list
+*/
+$main-font: "Circular STD";
+$main-name: "CircularStd-";
+$main: #{$main-font},sans-serif;
+// include main font
+@include font-list($main-font,$main-name,$main-font-weights,normal);
+@include font-list($main-font,$main-name,$main-font-weights,italic);
+
+// $second-font: "FreigSanPro";
+// $second-font-name: "FreigSanPro-";
+// $second: #{$second-font},sans-serif;
+// include main font
+// @include font-list($second-font,$second-font-name,$second-font-weights,normal);
+//
+
+$icon-font: "Notes";
+// $icon-font-name: "snapbox";
+$icon-font-family: #{$icon-font},sans-serif;
+// include main font
+// @include font-include($icon-font,$icon-font-name,normal,normal);
+
+*{ }
+
+// headers
+h1,h2,h3,h4,h5,h6{ font-family: $main; text-align: left; font-weight: $font-bold; padding: 0; margin: 0;
+	&.sub{ font-weight: $font-medium; }
+}
+h1{ font-size: rem(40); line-height: rem(40); }
+h2{ font-size: rem(30); line-height: rem(40); }
+h3{ font-size: rem(16); line-height: rem(24); }
+h4{ font-size: rem(14); line-height: rem(14); }
+h5{ font-size: rem(12); line-height: rem(12); }
+h6{ font-size: rem(10); line-height: rem(10); }
+
+// make fontweight classes
+@each $weight in $main-font-weights{
+	.font-#{nth($weight,1)}{ font-weight: #{nth($weight,2)}; }
+}
+
+// make font styles
+
+.font-bold,strong{ font-weight: $font-bold; }
+small{ font-size: smaller; }
+del{ text-decoration: line-through; }
+ins{ text-decoration: underline; }
+sub{ vertical-align: sub; font-size: smaller; }
+sup{ vertical-align: sup; font-size: smaller; }
+
+p{ margin: 0; padding: 0; font-size: rem(14); line-height: rem(26);
+	&.text-tiny{ font-size: rem(12); }
+	&.text-small{ font-size: rem(14); }
+	&.text-regular{ font-size: rem(16); }
+	&.text-large{ font-size: rem(18); }
+	&.text-xlarge{ font-size: rem(24); }
+}
+
+h1{
+  & + h3{ margin-top: 1rem; }
+}
+h2{
+  & + p{ margin-top: 1rem; }
+}
+h3{
+  & + h1{ margin-top: .75rem; }
+  & + p{ margin-top: 2rem; }
+  & + .row{ margin-top: 1rem; }
+}
+button,.button,*[class^="button"],*[class*=" button"],
+p{
+  & + p{ margin-top: .5rem; }
+	// ,& + .button
+  // ,& + *[class^="button"]
+  // ,& + *[class*=" button"]
+	// ,& + button{ margin-top: 2rem; }
+}

@@ -1,0 +1,42 @@
+
+
+%round{ border-radius: 50%; }
+%rounded{ border-radius: $border-radius; }
+%midY{ transform: translateY(-50%); position: absolute; top: 50%; }
+%midX{ transform: translateX(-50%); position: absolute; left: 50%; }
+%midXY,%mid,%midYX{ transform: translateY(-50%) translateX(-50%); position: absolute; top: 50%; left: 50%; }
+
+.makeRelative{ position: relative; }
+.textCenter{ text-align: center; }
+.textLeft{ text-align: left; }
+.textRight{ text-align: right; }
+nav{
+	li{ display: inline-block; }
+}
+hr{ width: 100%; height: 1px; clear: both; background: color(zwart,.25); color: color(zwart,.25); margin: 1rem 0; border: none; }
+
+// foundation fix for last child
+[class*="column"]+[class*="column"]:last-child { float: left !important; }
+
+a{ text-decoration: none; color: inherit; }
+
+*{ -webkit-appearance: none; outline: none;outline: none; border-box: border-box; -webkit-overflow-scrolling: touch;
+	 -webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		text-rendering: optimizeLegibility;
+  &:focus{ outline: none; }
+  &:invalid{ box-shadow: none; }
+  &:-moz-submit-invalid{ box-shadow: none; }
+  &:-moz-ui-invalid{ box-shadow:none; }
+	&.opacity{
+		@for $i from 1 through 100{
+			&-#{$i}{ opacity: #{$i/100}; }
+		}
+	}
+}
+
+ul,li{ margin: 0; padding: 0; list-style-type: none; }
+body, html{ width: 100%; height: 100%; max-width: 100%; margin: 0px; padding: 0px; color: color(zwart); font-family: #{$main}; font-size: 16px;
+ .touch & { overflow-x: hidden; }
+ header,section,footer{ font-size: rem(14); }
+}

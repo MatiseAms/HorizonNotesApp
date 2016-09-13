@@ -1,0 +1,53 @@
+
+// Spinning box
+@include keyframes(spin) {
+  0%{ transform: rotateX(0) rotateY(0); }
+  100%{ transform: rotateX(360deg) rotateY(360deg); }
+}
+
+// Spinning box
+@include keyframes(comeIn) {
+  0%{ top: -100%; transform: rotateX(960deg) rotateY(-180deg); }
+  80%{ top: 60%; }
+  100%{ top: 50%; transform: rotateX(-35.5deg) rotateY(45deg); }
+}
+@include keyframes(popIn){
+  0%{ transform: scale(0); }
+  90%{ transform: scale(1.1); }
+  100%{ transform: scale(1); }
+}
+@include keyframes(rotateIn){
+  0%{ transform: rotate(225deg); }
+  60%{ transform: rotate(-20deg); }
+  70%{ transform: rotate(15deg); }
+  80%{ transform: rotate(-10deg); }
+  90%{ transform: rotate(5deg); }
+  100%{ transform: rotate(0deg); }
+  100%{ transform: rotate(0deg); }
+}
+
+// Spinning box
+@include keyframes(shatter) {
+  0%{ border: 100px solid white; }
+  100%{ border: 0px solid white; }
+}
+@include keyframes(rotator){
+  0%{ transform: rotateX(-45deg) rotateY(0); }
+  100%{transform: rotateX(-45deg) rotateY(360deg); }
+}
+
+@include keyframes(fadeIn){
+  0%{ opacity: 0; }
+  100%{ opacity: 1; }
+}
+
+@include keyframes(fadeOut){
+  0%{ opacity: 1; }
+  100%{ opacity: 0; }
+}
+
+@include keyframes(blink){
+  0%{ opacity: 0; }
+  50%{ opacity: 1; }
+  100%{ opacity: 0; }
+}

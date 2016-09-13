@@ -1,0 +1,12 @@
+.icon-pause,.icon-play{ display: none; size: 4rem; background: color(wit); position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); border-radius: $border-round; line-height: 3rem; box-shadow: 0 0 0 0rem color(wit),0 0 0 .5rem color(zwart,.5); transition: $transition; overflow: hidden;
+
+  &:before,&:after{ content:""; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); transition: $transition; }
+
+  &:before{ size: 0rem; margin-left: -5rem; border-style: solid; border-width: .75rem 0 .75rem 1rem; border-color: transparent transparent transparent color(zwart); }
+  &:after{ width: .7rem; height: 1rem; border-left: .2rem solid color(wit); border-right: .2rem solid color(zwart); }
+
+  &:hover, &.playing{ box-shadow:0 0 0 .5rem color(wit),0 0 1rem 0rem color(zwart,0);
+    &:before{ margin-left: .1rem; }
+    &:after{ margin-left: 5rem; }
+  }
+}
