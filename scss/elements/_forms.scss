@@ -3,6 +3,7 @@
   @include placeholder(){ color: color(zwart,.25);
   }
   &:focus{ box-shadow: 0 -4px 0 0 color(wit) inset; }
+  .white &{ color: color(groen); }
 }
 
 form{ padding: 0rem; text-align: center; text-align: center;
