@@ -1,0 +1,16 @@
+$tickSize: 1.5;
+.ticker{ padding-left: #{$tickSize}rem; position: relative; height: #{$tickSize*3}rem; overflow: hidden; top: -#{$tickSize}rem;
+  &:before,&:after{ width: #{$tickSize}rem; height: #{$tickSize}rem; background: color(wit,.5); display: block; content: "";  position: absolute; z-index: 100; left: 0;
+  }
+  &:before{ top: 0px; background-image: linear-gradient(to bottom, color(wit,1),color(wit,0));}
+  &:after{ bottom: 0px;background-image: linear-gradient(to top, color(wit,1),color(wit,0)); }
+  &__wrap{ height: auto; position: absolute; left: 0px;  width: #{$tickSize}rem; transition: .5s;
+    &--tick{ height: #{$tickSize}rem; line-height: #{$tickSize*0.75}rem; text-align: center;  }
+  }
+
+  @for $i from 1 through 32 {
+    &[data-current="#{$i}"]{
+      .wrapper{ top: -#{($i*$tickSize) + $tickSize}rem; }
+    }
+  }
+}

@@ -13,11 +13,14 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
-
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
+      // StatusBar.styleDefault();
+      StatusBar.overlaysWebView(true);
+      // StatusBar.style(1); //Light
+      StatusBar.style(2); //Black, transulcent
+      // StatusBar.style(3); //Black, opaque
     }
   });
 })
@@ -32,20 +35,30 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     controller: 'AppCtrl'
   })
 
-  .state('app.search', {
-    url: '/search',
+  .state('app.nosound', {
+    url: '/nosound',
     views: {
       'menuContent': {
-        templateUrl: 'templates/search.html'
+        templateUrl: 'templates/nosound.html'
       }
     }
   })
 
-  .state('app.browse', {
-      url: '/browse',
+  .state('app.play', {
+      url: '/play',
       views: {
         'menuContent': {
-          templateUrl: 'templates/browse.html'
+          templateUrl: 'templates/play.html',
+          controller: 'PlayCtrl'
+        }
+      }
+    })
+
+  .state('app.about', {
+      url: '/about',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/about.html'
         }
       }
     })
@@ -69,5 +82,5 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/nosound');
 });

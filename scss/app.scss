@@ -8,10 +8,45 @@
   "defaults",
   "typography",
   "base",
-  // "ionic",
+  "grid",
   "elements";
 
   $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 
 body{ background: color(groen); }
+
+.container{ min-height: 100vh; background: color(grijs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  &_block{ padding: 50px 50px 50px 50px; width: 100%; flex: auto;
+    &:first-child(){  align-self: flex-start; padding-top: 100px; }
+    &:last-child(){  align-self: flex-end; }
+    &.white{ background: color(wit); }
+    &.green{ background: color(groen); }
+
+    h1{ font-size: rem(40); line-height: rem(50); font-weight: $font-medium; }
+  }
+}
+div.title.title-center.header-item{ left: 0 !important; }
+.title{ height: 100px; line-height: 100px; width: 100%;
+  background-image: url('../img/logo.svg'); left: 0; text-indent: -999em;
+  background-repeat: no-repeat; background-position: 45px center;
+}
+
+.menuToggle{ width: 100px; height: 100px; position: absolute; right: 0px; top: 0px;
+  span{ @include menu(rem(30),rem(2),rem(6),black);
+    @include menu-body-middle{ width: rem(20); }
+  }
+}
+
+
+.moreinfo{ display: inline-block; width: 2.5rem; height: 2.5rem; border-radius: 1.25rem; line-height: 2.5rem; text-align: center; color: color(zwart); font-size: 1.5rem; margin-left: .5rem;
+  .green &{ background-color: color(wit); }
+  .white &{ background-color: color(groen); }
+}
+
+#play{
+}

@@ -63,6 +63,34 @@ angular.module('starter.controllers', [])
 	}];
 })
 
+.controller('PlayCtrl', ['$scope', '$interval', function($scope, $interval) {
+  $scope.number = 30;
+  $scope.getNumber = function(num) {
+      return new Array(num);
+  };
+
+  var number;
+  $scope.numberCurrent = 30;
+  loader = $interval(function(){
+    if($scope.numberCurrent > -1){
+      $scope.numberCurrent = $scope.numberCurrent - 1;
+    } else {
+      $interval.cancel();
+    }
+  },1000);
+
+  var loader;
+  $scope.loader = 100;
+  loader = $interval(function(){
+    if($scope.loader > -1){
+      $scope.loader = $scope.loader - 1;
+    } else {
+      $interval.cancel();
+    }
+  },300);
+
+}])
+
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 
 		// var room = new MAF.Room('MatiseFissa');

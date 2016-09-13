@@ -1,97 +1,19 @@
-%full-button{ width: 100%; content: "full button"; }
-%naked-button{ background-color: transparent !important; box-shadow: 0px 0px 0px 2px white inset !important; color: white;  }
-%dark-naked-button{ background-color: transparent !important; box-shadow: 0px 0px 0px 2px color(zwart,.2) inset !important; color: color(zwart,.2) !important; text-align: center; }
 
-%display-block{ display: block; }
-%button-big{ padding: 1rem 2rem; font-size: rem(20); }
-%button-small{ padding: .25rem .5rem; font-size: rem(12); }
-%button-round{ border-radius: 30px; padding: rem(10) rem(25);}
+.button{ width: rem(60); height: rem(60); font-size: 1rem; position: relative;
+  &.black{ background-color: color(zwart); color: color(groen); }
+  &.white{ background-color: color(wit); color: color(zwart); }
+  &.green{ background-color: color(groen); color: color(zwart); }
 
-@include wildcard(btn){
-  @extend %form-button-basic; display: inline-block; content:"button";
-  @include default(button-background button-color button-font-size button-border-color button-box-shadow border-radius);
+  &.float-right{ float: right; }
+  &.float-left{ float: left; }
 
-  padding: 1rem 1rem; font-size: rem(18); height: 50px; color: white;
-  border: none; margin: auto; font-weight: $font-medium; font-family: $main;
-}
-@mixin buttonColorSet($colors){
-  @each $color in $colors{
-    // Set background color
-    &-#{nth($color,1)},
-    &.#{nth($color,1)}{
-      background-color: #{nth($color,2)};
-      //only in libsass :(
-      // @if lightness(color(#{nth($color,1)})) > 35{
-      //   color: color(light);
-      // } @else { color: color(dark); }
-      .no-touch &{
-        &:hover{ background: darken(nth($color,2),10%); }
-      }
-      box-shadow: 0px -2px 0px 0 rgba(0, 0, 0, .2) inset, 2px 2px 10px 0px rgba(0, 0, 0, .2);
+  &.round{ border-radius: rem(30); }
+  &.black{ background-color: color(zwart); }
+  &.large{ width: rem(120); height: rem(120); line-height: rem(120); font-size: 2rem;
+    &.round{ border-radius: rem(60); }
+  }
 
-    }
-    font-weight: bold;
-    box-shadow: 0 .25rem 0px 0px darken(nth($color,2),10%);
-    //@debug '-#{nth($color,1)}';
-    // hoverColor
-    &-hover_#{nth($color,1)},
-    &.hover_#{nth($color,1)}{ &:hover { background: #{$color,2}; }}
-
-    // hoverTextColor
-    &-hover-text_#{nth($color,1)},
-    &.hover-text_#{nth($color,1)}{ &:hover { color: #{$color,2}; }}
-
-    // textColor
-    &-text_#{nth($color,1)}{ color: #{$color,2}; }
+  &.horizon-line{
+    &:before{ content: ""; width: 2rem; height: 4px; display: block; background: color(groen);  border-radius: 2px; position: absolute; left: 0px; top: 50%; transform: translate(-50%,-50%); }
   }
 }
-.btn{
-  @include buttonColorSet($colors);
-  @include buttonColorSet($social-colors);
-
-  // Make button 100% width by giving extra part -full or just the class .full
-  &-full,&.full{ @extend %full-button; }
-
-  // Get rid of the background by making it transparent and giving it a naked or ghost class
-  &-naked,&.naked,&-ghost,&.ghost{ @extend %naked-button; }
-  &-darknaked,&.darknaked,&-darkghost,&.darkghost{ @extend %dark-naked-button; }
-
-  // Block it
-  &-block,&.block{ @extend %display-block; }
-
-  // Bigg
-  &-big,&.big{ @extend %button-big; }
-
-  // Bigg
-  &-small,&.small{ @extend %button-small; }
-
-  // round
-  &-round,&.round{ @extend %button-round; }
-}
-
-
-// a,button{
-//   // @each $color in $colors{
-//   //   @include wildcard('-#{nth($color,1)}'){ background: #{nth($color,2)}; }
-//   //   @if lightness(color(#{nth($color,1)})) > 35{
-//   //     color: color(light);
-//   //   } @else {
-//   //     color: color(dark);
-//   //   }
-//   //   @include wildcard('-#{nth($color,1)}'){
-//   //     &:hover{ background: darken(nth($color,2),10%); }
-//   //   }
-//   //
-//   //   @include wildcard('-border_#{nth($color,1)}'){ border-color: #{nth($color,2)}; }
-//   //   @include wildcard('-hover_#{nth($color,1)}'){ &:hover{ background: #{nth($color,2)}; }}
-//   //   @include wildcard('-hover_text_#{nth($color,1)}'){ &:hover{ color: #{nth($color,2)}; }}
-//   //   @include wildcard('-text_#{nth($color,1)}'){ color: #{nth($color,2)}; }
-//   // }
-//   //
-//   // @include wildcard('-full'){ @extend %full-button; }
-//   // @include wildcard('-naked'){ @extend %naked-button; }
-//   // @include wildcard('-block'){ @extend %display-block; }
-//   // @include wildcard('-big'){ @extend %button-big; }
-//   // @include wildcard('-small'){ @extend %button-small; }
-//   // @include wildcard('-round'){ @extend %button-round; }
-// }
