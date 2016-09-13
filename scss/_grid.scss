@@ -1,10 +1,5 @@
 $max-row-width: 1024px;
 
-.row{ width: 100%; max-height: $max-row-width; display: flex;
-  justify-content: flex-center;
-  &.align-left{ justify-content: flex-start; }
-  &.align-right{ justify-content: flex-end; }
-  &.space-between{ justify-content: space-between; }
-  &.space-between{ justify-content: space-around; }
-  .column{ }
+.row{ width: 100%; max-height: $max-row-width; @include calc('width','100% + 1rem'); margin-left: -.5rem;
+  .column{ display: block; padding: .5rem; white-space: nowrap; }
 }
