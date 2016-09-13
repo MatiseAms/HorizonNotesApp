@@ -160,11 +160,11 @@ $button-default-active-border:    $button-stable-active-border !default;
 // Bars
 // -------------------------------
 
-$bar-height:                      80px !default;
-$bar-title-font-size:             17px !default;
+$bar-height:                      0px !default;
+$bar-title-font-size:             18px !default;
 $bar-padding-portrait:            5px !default;
 $bar-padding-landscape:           5px !default;
-$bar-transparency:                1 !default;
+$bar-transparency:                0 !default;
 
 $bar-footer-height:               $bar-height !default;
 $bar-subheader-height:            $bar-height !default;
@@ -183,8 +183,8 @@ $bar-stable-active-bg:            $button-stable-active-bg !default;
 $bar-stable-active-border:        $button-stable-active-border !default;
 
 $bar-positive-bg:                 rgba($button-positive-bg, $bar-transparency) !default;
-$bar-positive-text:               $button-positive-text !default;
-$bar-positive-border:             $button-positive-border !default;
+$bar-positive-text:               color(zwart)!default;
+$bar-positive-border:             transparent !default;
 $bar-positive-active-bg:          $button-positive-active-bg !default;
 $bar-positive-active-border:      $button-positive-active-border !default;
 
@@ -293,7 +293,7 @@ $tabs-striped-border-width:       2px !default;
 // -------------------------------
 
 $item-font-size:                  16px !default;
-$item-border-width:               1px !default;
+$item-border-width:               0px !default;
 $item-padding:                    16px !default;
 
 $item-button-font-size:           18px !default;
@@ -370,10 +370,10 @@ $item-dark-text:                  $button-dark-text !default;
 $item-dark-active-bg:             $button-dark-active-bg !default;
 $item-dark-active-border:         $button-dark-active-border !default;
 
-$item-default-bg:                 $item-light-bg !default;
-$item-default-border:             $item-light-border !default;
-$item-default-text:               $item-light-text !default;
-$item-default-active-bg:          #D9D9D9 !default;
+$item-default-bg:                 $dark !default;
+$item-default-border:             $dark !default;
+$item-default-text:               $light !default;
+$item-default-active-bg:          $positive !default;
 $item-default-active-border:      $item-light-active-border !default;
 
 
@@ -552,11 +552,11 @@ $range-default-track-bg:          #ccc !default;
 // Menus
 // -------------------------------
 
-$menu-bg:                         #fff !default;
+$menu-bg:                         $dark !default;
 $menu-width:                      275px !default;
 $menu-animation-speed:            200ms !default;
 
-$menu-side-shadow:                -1px 0px 2px rgba(0, 0, 0, 0.2), 1px 0px 2px rgba(0,0,0,0.2) !default;
+$menu-side-shadow:                none !default;
 
 
 // Modals

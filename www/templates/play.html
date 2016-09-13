@@ -1,0 +1,37 @@
+<ion-view view-title="Play" id="play">
+  <ion-content>
+    <div class="container">
+      <div class="container_block white">
+        <h1>Which song is playing now?</h1>
+        <div class="timer row">
+          <div class="column">Time left</div>
+          <div class="column ticker" data-current="{{numberCurrent}}">
+            <div class="ticker__wrap wrapper">
+              <div class="ticker__wrap--tick">
+                <span></span>
+              </div>
+              <div class="ticker__wrap--tick">
+                <span>0</span>
+              </div>
+              <div class="ticker__wrap--tick" ng-repeat="i in getNumber(number) track by $index">
+                <span>{{$index+1}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="loader" data-load="{{loader}}"></div>
+          </div>
+        </div>
+      </div>
+      <div class="container_block green">
+        <form>
+          <label>Artist:</label>
+          <input type="text" placeholder="Answer here" />
+          <label>Song:</label>
+          <input type="text" placeholder="Answer here" />
+        </form>
+        <a href="#" class="button black round large float-right horizon-line">Go</a>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

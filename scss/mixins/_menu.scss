@@ -1,4 +1,4 @@
-@mixin menu($width: 2rem, $height: .25rem, $gutter: .25rem, $color: $white, $round: $border-radius, $transition-duration: $transition) {
+@mixin menu($width: 2rem, $height: .25rem, $gutter: .25rem, $color: color(wit), $round: $border-radius, $transition-duration: $transition) {
   $menu-height: $height !global;
   $menu-gutter: $gutter !global;
   user-select: none; position: absolute; margin:#{$height + $gutter} auto; text-indent: -999em; text-align: left; top: 50%; left: 50%; margin-left: -#{$width/2}; margin-top: -#{$height/2};
