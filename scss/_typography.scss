@@ -22,7 +22,7 @@ $main-name: "CircularStd-";
 $main: #{$main-font},sans-serif;
 // include main font
 @include font-list($main-font,$main-name,$main-font-weights,normal);
-@include font-list($main-font,$main-name,$main-font-weights,italic);
+// @include font-list($main-font,$main-name,$main-font-weights,italic);
 
 // $second-font: "FreigSanPro";
 // $second-font-name: "FreigSanPro-";

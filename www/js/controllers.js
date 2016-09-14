@@ -1,5 +1,5 @@
 angular.module('starter.controllers', [])
-	.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+	.controller('AppCtrl', function($scope, $ionicModal, $timeout,$location, $ionicNavBarDelegate) {
 
 		// With the new view caching in Ionic, Controllers are only called
 		// when they are recreated or on app start, instead of every page change.
@@ -7,6 +7,13 @@ angular.module('starter.controllers', [])
 		// listen for the $ionicView.enter event:
 		//$scope.$on('$ionicView.enter', function(e) {
 		//});
+
+    var path = $location.path();
+    if (path.indexOf('submit') != -1){
+      $ionicNavBarDelegate.showBackButton(false);
+    } else {
+      $ionicNavBarDelegate.showBackButton(false);
+    }
 
 		$scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
 			var fromClass = fromState.name.replace('app.', 'state-');
@@ -87,16 +94,24 @@ angular.module('starter.controllers', [])
 		});
 
 	}])
-	.controller('KaraokeCtrl', function($scope, $stateParams) {
+	.controller('KaraokeCtrl', function($scope) {
 		$scope.song = {
 			artist: "Drake",
 			title: "One Love"
 		};
-		$scope.$apply();
+		$scope.$applyAsync();
 		console.log($scope.song);
 	})
-	.controller('PrekaraokeCtrl', function($scope, $stateParams) {})
-	.controller('PlayCtrl', function($scope, $stateParams, $state) {
+	.controller('PrekaraokeCtrl', function($scope,$state) {
+    $scope.goPlay = function(){
+      $state.go('app.karaoke');
+    };
+    $scope.goBack = function(){
+      $state.go('app.nosound');
+    };
+    $scope.$applyAsync();
+  })
+	.controller('PlayCtrl', function($scope, $state) {
 
 		var self = this;
 		$scope.modal = false;
