@@ -36,11 +36,15 @@ angular.module('starter', [
 		encrypted: true
 	});
 
+	var alreadydone = false;
 	var channel = pusher.subscribe('game');
 	channel.bind('newSong', function(data) {
 		$rootScope.songTitle = data;
 		$rootScope.songArtist = data;
-		$state.go('app.play');
+		if (!alreadydone) {
+			alreadydone = true;
+			$state.go('app.play');
+		}
 	});
 }])
 

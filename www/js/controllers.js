@@ -54,23 +54,34 @@ angular.module('starter.controllers', [])
 			}, 1000);
 		};
 	})
-	.controller('PlayCtrl', ['$scope', '$interval', function($scope, $interval) {
+	.controller('PlayCtrl', ['$scope', '$interval', '$http', '$state', function($scope, $interval, $http, $state) {
 
 		var self = this;
 		$scope.modal = false;
-
+		var hasrun = false;
 		$scope.$watch(function() {
-			if ($scope.modal) {
+			if ($scope.modal && !hasrun) {
+				hasrun = true;
 				setTimeout(function() {
 					$('#songArtist').addClass('active');
 					$('#songTitle').addClass('active');
 					setTimeout(function() {
-						$state.go('app.prekaraoke');
+						$http.get('http://api.notes.matise.nl/pusherer/score', {
+							params: {
+								score: '+45',
+								total: 253,
+								profilepicture: 'http://radio.nl/i/796244/bodytext_image/250/970/ntr-overweegt-stappen-tegen-porno-pino'
+							}
+						}).then(function() {
+							$state.go('app.prekaraoke');
+						}, function(error) {
+							alert(error);
+						});
+
 					}, 4000);
 				}, 1000);
 			}
 		});
-
 
 		var _artist = '';
 		var _title = '';
@@ -117,60 +128,24 @@ angular.module('starter.controllers', [])
 		$scope.$applyAsync();
 		console.log($scope.song);
 	})
-	.controller('PrekaraokeCtrl', function($scope, $state) {
+	.controller('PrekaraokeCtrl', function($scope, $state, $http) {
 		$scope.goPlay = function() {
 			$http.get('http://api.notes.matise.nl/pusherer/karaoke', {
 				params: {
-					name: 'Sil van Diepen',
+					name: 'Stephan Hoogland',
 					profilepicture: 'http://radio.nl/i/796244/bodytext_image/250/970/ntr-overweegt-stappen-tegen-porno-pino'
 				}
+			}).then(function successCallback(response) {
+				$state.go('app.karaoke');
+			}, function errorCallback(response) {
+				console.log(response);
 			});
-			$state.go('app.karaoke');
 		};
 		$scope.goBack = function() {
 			$state.go('app.nosound');
 		};
 		$scope.$applyAsync();
 	})
-	.controller('PlayCtrl', ['$scope', '$state', '$rootScope', '$http', function($scope, $state, $rootScope, $http) {
-
-		var self = this;
-		$scope.modal = false;
-		var hasrun = false;
-		$scope.$watch(function() {
-			if ($scope.modal && !hasrun) {
-				hasrun = true;
-				setTimeout(function() {
-					$('#songArtist').addClass('active');
-					$('#songTitle').addClass('active');
-					setTimeout(function() {
-						$http.get('http://api.notes.matise.nl/pusherer/score', {
-							params: {
-								score: '+19',
-								total: 100,
-								profilepicture: 'http://radio.nl/i/796244/bodytext_image/250/970/ntr-overweegt-stappen-tegen-porno-pino'
-							}
-						});
-						$state.go('app.prekaraoke');
-					}, 4000);
-				}, 1000);
-			}
-		});
-		// $http.get('http://api.notes.matise.nl/pusherer/karaoke?name=silvandiepen&profilepicture=http://radio.nl/i/796244/bodytext_image/250/970/ntr-overweegt-stappen-tegen-porno-pino').then(function(response) {
-		// 	alert(response);
-		// });
-
-		var _artist = '';
-		var _title = '';
-		$scope.song = {
-			artist: function(newArtist) {
-				return arguments.length ? (_artist = newArtist) : _artist;
-			},
-			title: function(newTitle) {
-				return arguments.length ? (_title = newTitle) : _title;
-			}
-		};
-	}])
 	.controller('NosoundCtrl', function($scope, $stateParams, $state) {
 		$scope.goPlay = function() {
 			$state.go('app.play');
