@@ -1,5 +1,5 @@
 angular.module('starter.controllers', [])
-	.controller('AppCtrl', function($scope, $ionicModal, $timeout,$location, $ionicNavBarDelegate) {
+	.controller('AppCtrl', function($scope, $ionicModal, $timeout, $location, $ionicNavBarDelegate) {
 
 		// With the new view caching in Ionic, Controllers are only called
 		// when they are recreated or on app start, instead of every page change.
@@ -8,12 +8,12 @@ angular.module('starter.controllers', [])
 		//$scope.$on('$ionicView.enter', function(e) {
 		//});
 
-    var path = $location.path();
-    if (path.indexOf('submit') != -1){
-      $ionicNavBarDelegate.showBackButton(false);
-    } else {
-      $ionicNavBarDelegate.showBackButton(false);
-    }
+		var path = $location.path();
+		if (path.indexOf('submit') != -1) {
+			$ionicNavBarDelegate.showBackButton(false);
+		} else {
+			$ionicNavBarDelegate.showBackButton(false);
+		}
 
 		$scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
 			var fromClass = fromState.name.replace('app.', 'state-');
@@ -107,19 +107,6 @@ angular.module('starter.controllers', [])
 				$interval.cancel();
 			}
 		}, 300);
-
-		// Enable pusher logging - don't include this in production
-		Pusher.logToConsole = true;
-
-		var pusher = new Pusher('e28b6f53404860a0e3bd', {
-			cluster: 'eu',
-			encrypted: true
-		});
-
-		var channel = pusher.subscribe('game');
-		channel.bind('newsong', function(data) {
-			alert(data.message);
-		});
 
 	}])
 	.controller('KaraokeCtrl', function($scope) {

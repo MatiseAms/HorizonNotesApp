@@ -10,7 +10,7 @@ angular.module('starter', [
 	'ngCordova'
 ])
 
-.run(function($ionicPlatform) {
+.run(['$ionicPlatform', '$state', function($ionicPlatform, $state) {
 	$ionicPlatform.ready(function() {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
 		// for form inputs)
@@ -27,7 +27,20 @@ angular.module('starter', [
 			// StatusBar.style(3); //Black, opaque
 		}
 	});
-})
+
+	// Enable pusher logging - don't include this in production
+	Pusher.logToConsole = true;
+
+	var pusher = new Pusher('e28b6f53404860a0e3bd', {
+		cluster: 'eu',
+		encrypted: true
+	});
+
+	var channel = pusher.subscribe('game');
+	channel.bind('newsong', function(data) {
+		$state.go('app.play');
+	});
+}])
 
 .config(function($stateProvider, $urlRouterProvider) {
 	$stateProvider
@@ -91,5 +104,5 @@ angular.module('starter', [
 			}
 		});
 	// if none of the above states are matched, use this as the fallback
-	$urlRouterProvider.otherwise('/app/login');
+	$urlRouterProvider.otherwise('/app/nosound');
 });
