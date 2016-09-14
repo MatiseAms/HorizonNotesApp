@@ -1,18 +1,30 @@
 
-.button{ width: auto; height: rem(60); font-size: 1rem; position: relative; line-height: rem(60); padding: 0 1.5rem;
-  &.black{ background-color: color(zwart); color: color(groen);
-   &.go{ background-image: url('../img/go-groen.svg'); }
+.button{ width: auto; height: rem(60); font-size: 1rem; position: relative; padding: 0 1.5rem; height: 60px; line-height: rem(56);border-radius: rem(30); font-weight: $font-bold;
+
+  $button-types: ('go','close','mic');
+  $button-colors: (
+    ("black","zwart","groen"),
+    ("white","wit","groen"),
+    ("green","groen","zwart")
+  );
+  @each $color in $button-colors{
+    &.#{nth($color,1)}{ background-color: color(nth($color,2)); color: color(nth($color,3));
+      &.horizon-line:before{ background-color: color(nth($color,3)); }
+      // Button Types
+      @each $type in $button-types{
+        text-indent: -999em; background-repeat: no-repeat; background-position: center center;
+        &.#{$type}{ background-image: url('../img/#{$type}-#{nth($color,3)}.svg'); }
+      }
+    }
   }
-  &.white{ background-color: color(wit); color: color(zwart);
-    &.go{ background-image: url('../img/go-wit.svg'); }
-  }
-  &.green{ background-color: color(groen); color: color(zwart);
-    &.go{ background-image: url('../img/go-zwart.svg'); }
-  }
+  &.mic{ background-size: 110px; background-position: bottom -2px center; }
+  &.close{ background-size: 40px; background-position: center center; }
+  &.go{ background-size: 60px; background-position: center center; }
 
   @each $color in $social-colors{
     &.#{nth($color,1)}{ background-color: #{nth($color,2)}; color: white; }
   }
+
   &.float-right{ float: right; }
   &.float-left{ float: left; }
 
@@ -23,11 +35,13 @@
   }
 
   &.horizon-line{
-    &:before{ content: ""; width: 2rem; height: 4px; display: block; background: color(groen);  border-radius: 2px; position: absolute; left: 0px; top: 50%; transform: translate(-50%,-50%); }
+    &:before{ content: ""; width: 2rem; height: 4px; display: block;  border-radius: 2px; position: absolute; left: 0px; top: 50%; transform: translate(-50%,-50%); }
+    &.close{ left: auto; right: 0; }
   }
-  &.go{ text-indent: -999em;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: 50px;
+
+  &.ghost{ background-color: transparent; box-shadow: 0 0 0 2px inset; border-style: solid;
+    @each $color in $button-colors{
+      .#{nth($color,1)} &{ color: color(#{nth($color,3)}); box-shadow-color: color(#{nth($color,3)});  }
+    }
   }
 }

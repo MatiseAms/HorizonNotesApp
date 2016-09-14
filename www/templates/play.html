@@ -4,7 +4,7 @@
 			<div class="container_block white">
 				<h1>Which song is playing now?</h1>
 				<div class="timer row space-between">
-					<div class="column">Time left</div>
+					<div class="column"><span style="color: black;">Time left</span></div>
 					<div class="column ticker" data-current="{{numberCurrent}}">
 						<div class="ticker__wrap wrapper">
 							<div class="ticker__wrap--tick">
@@ -18,7 +18,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="column">sec</div>
+					<div class="column"><span style="color: black;">sec</span></div>
 					<div class="column">
 						<div class="loader" data-load="{{loader}}"></div>
 					</div>
@@ -27,14 +27,22 @@
 			<div class="container_block green">
 				<form>
 					<label>Artist:</label>
-					<input type="text" placeholder="Mees Master" />
+					<input type="text" placeholder="Mees Master" ng-model="song.artist" ng-model-options="{ getterSetter: true }"/>
 					<label>Song:</label>
-					<input type="text" placeholder="Brother from another mother" />
+					<input type="text" placeholder="Brother from another mother" ng-model="song.title" ng-model-options="{ getterSetter: true }" />
 				</form>
 				<div class="block align-right">
-					<a href="#" class="button black round large float-right horizon-line go">Go</a>
+					<a href="#" ng-click="modal = true" class="button black round large float-right horizon-line go">Go</a>
 				</div>
 			</div>
 		</div>
+    <div class="modal" ng-class="{'active': modal}">
+      <div class="modal-bg"></div>
+      <div class="modal-content">
+        <h3 id="songArtist" class="good" ng-bind="song.artist()"></h3>
+        <hr />
+        <h3 id="songTitle" class="wrong green" ng-bind="song.title()"></h3>
+      </div>
+    </div>
 	</ion-pane>
 </ion-view>

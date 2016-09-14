@@ -8,6 +8,14 @@ angular.module('starter.controllers', [])
 		//$scope.$on('$ionicView.enter', function(e) {
 		//});
 
+		$scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+			var fromClass = fromState.name.replace('app.', 'state-');
+			var toClass = toState.name.replace('app.', 'state-');
+			$('body')
+				.removeClass(fromClass)
+				.addClass(toClass);
+		});
+
 		// Form data for the login modal
 		$scope.loginData = {};
 
@@ -38,27 +46,6 @@ angular.module('starter.controllers', [])
 				$scope.closeLogin();
 			}, 1000);
 		};
-	})
-	.controller('PlaylistsCtrl', function($scope) {
-		$scope.playlists = [{
-			title: 'Reggae',
-			id: 1
-		}, {
-			title: 'Chill',
-			id: 2
-		}, {
-			title: 'Dubstep',
-			id: 3
-		}, {
-			title: 'Indie',
-			id: 4
-		}, {
-			title: 'Rap',
-			id: 5
-		}, {
-			title: 'Cowbell',
-			id: 6
-		}];
 	})
 	.controller('PlayCtrl', ['$scope', '$interval', function($scope, $interval) {
 		$scope.number = 30;
@@ -100,13 +87,51 @@ angular.module('starter.controllers', [])
 		});
 
 	}])
-	.controller('PlaylistCtrl', function($scope, $stateParams) {
+	.controller('KaraokeCtrl', function($scope, $stateParams) {
+		$scope.song = {
+			artist: "Drake",
+			title: "One Love"
+		};
+		$scope.$apply();
+		console.log($scope.song);
+	})
+	.controller('PrekaraokeCtrl', function($scope, $stateParams) {})
+	.controller('PlayCtrl', function($scope, $stateParams, $state) {
 
-		// var room = new MAF.Room('MatiseFissa');
-		// (function(event) {
-		// 	console.log(event.type, event.payload);
-		// }).subscribeTo(room, ['onConnected', 'onDisconnected', 'onCreated', 'onDestroyed', 'onJoined', 'onHasLeft', 'onData', 'onError']);
+		var self = this;
+		$scope.modal = false;
 
+		$scope.$watch(function() {
+			if ($scope.modal) {
+				setTimeout(function() {
+					$('#songArtist').addClass('active');
+					$('#songTitle').addClass('active');
+					setTimeout(function() {
+						$state.go('app.prekaraoke');
+					}, 4000);
+				}, 1000);
+			}
+		});
+		// if($scope.modal){
+		//   $('#songTitle','#songArtist').addClass('active');
+		// }
+
+
+		var _artist = '';
+		var _title = '';
+		$scope.song = {
+			artist: function(newArtist) {
+				return arguments.length ? (_artist = newArtist) : _artist;
+			},
+			title: function(newTitle) {
+				return arguments.length ? (_title = newTitle) : _title;
+			}
+		};
+	})
+	.controller('NosoundCtrl', function($scope, $stateParams, $state) {
+		setTimeout(function() {
+			$state.go('app.play');
+		}, 3000);
 	})
 	.controller('LoginCtrl', ['$scope', '$state', '$q', '$cordovaFacebook', '$rootScope', '$ionicHistory', '$http', function($scope, $state, $q, $cordovaFacebook, $rootScope, $ionicHistory, $http) {
 
@@ -125,3 +150,32 @@ angular.module('starter.controllers', [])
 		};
 
 	}]);
+// .controller('LoginCtrl', ['$scope', '$state', '$q', '$cordovaFacebook', '$rootScope', '$ionicHistory', function($scope, $state, $q, $cordovaFacebook, $rootScope, $ionicHistory) {
+//
+// 	$scope.loginFacebook = function() {
+//
+// 		$cordovaFacebook.login(["public_profile", "email"]).then(function(success) {
+// 			console.log(success);
+//
+// 			//Need to convert expiresIn format from FB to date
+// 			var expiration_date = new Date();
+// 			expiration_date.setSeconds(expiration_date.getSeconds() + success.authResponse.expiresIn);
+// 			expiration_date = expiration_date.toISOString();
+//
+// 			var facebookAuthData = {
+// 				"id": success.authResponse.userID,
+// 				"access_token": success.authResponse.accessToken,
+// 				"expiration_date": expiration_date
+// 			};
+//
+// 			// console.log('userId: ' + profileInfo.id);
+// 			// console.log('name: ' + profileInfo.name);
+// 			// console.log('email: ' + profileInfo.email);
+// 		}, function(fail) {
+// 			// Fail get profile info
+// 			console.log('profile info fail', fail);
+// 		});
+//
+// 	};
+//
+// }]);

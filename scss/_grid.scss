@@ -1,5 +1,5 @@
 $max-row-width: 1024px;
 
 .row{ width: 100%; max-height: $max-row-width; @include calc('width','100% + 1rem'); margin-left: -.5rem;
-  .column{ display: block; padding: .5rem; white-space: nowrap; }
+  .column{ display: block; padding: .5rem; white-space: nowrap;  }
 }

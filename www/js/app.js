@@ -41,7 +41,8 @@ angular.module('starter', [
 			url: '/nosound',
 			views: {
 				'menuContent': {
-					templateUrl: 'templates/nosound.html'
+					templateUrl: 'templates/nosound.html',
+					controller: 'NosoundCtrl'
 				}
 			}
 		})
@@ -71,12 +72,21 @@ angular.module('starter', [
 				}
 			}
 		})
-		.state('app.playlists', {
-			url: '/playlists',
+		.state('app.prekaraoke', {
+			url: '/prekaraoke',
 			views: {
 				'menuContent': {
-					templateUrl: 'templates/playlists.html',
-					controller: 'PlaylistsCtrl'
+					templateUrl: 'templates/prekaraoke.html',
+					controller: 'PrekaraokeCtrl'
+				}
+			}
+		})
+		.state('app.karaoke', {
+			url: '/karaoke',
+			views: {
+				'menuContent': {
+					templateUrl: 'templates/karaoke.html',
+					controller: 'KaraokeCtrl'
 				}
 			}
 		});
