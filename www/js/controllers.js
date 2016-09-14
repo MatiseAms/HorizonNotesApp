@@ -15,6 +15,17 @@ angular.module('starter.controllers', [])
 			$ionicNavBarDelegate.showBackButton(false);
 		}
 
+		// $scope.username = 'Sil van Diepen';
+		// $scope.userimage =  'http://vignette4.wikia.nocookie.net/muppet/images/e/ed/Ienie.jpg/revision/latest?cb=20060104011211';
+		// $scope.username = 'Tim Borst';
+		// $scope.userimage = 'http://sesamstraat.ntr.nl/site/data/foto/tommie/img/01.jpg';
+
+		$scope.username = 'Stephan Hoogland';
+		$scope.userimage = 'http://radio.nl/i/796244/bodytext_image/250/970/ntr-overweegt-stappen-tegen-porno-pino';
+
+		// $scope.username = 'Maurits Meester';
+		// $scope.userimage = 'https://pbs.twimg.com/profile_images/439462178601463808/iJTi9Tw-.png';
+
 		$scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
 			var fromClass = fromState.name.replace('app.', 'state-');
 			var toClass = toState.name.replace('app.', 'state-');
@@ -70,7 +81,7 @@ angular.module('starter.controllers', [])
 							params: {
 								score: '+45',
 								total: 253,
-								profilepicture: 'http://radio.nl/i/796244/bodytext_image/250/970/ntr-overweegt-stappen-tegen-porno-pino'
+								profilepicture: $scope.userimage
 							}
 						}).then(function() {
 							$state.go('app.prekaraoke');
@@ -132,8 +143,8 @@ angular.module('starter.controllers', [])
 		$scope.goPlay = function() {
 			$http.get('http://api.notes.matise.nl/pusherer/karaoke', {
 				params: {
-					name: 'Stephan Hoogland',
-					profilepicture: 'http://radio.nl/i/796244/bodytext_image/250/970/ntr-overweegt-stappen-tegen-porno-pino'
+					name: $scope.username,
+					profilepicture: $scope.userimage
 				}
 			}).then(function successCallback(response) {
 				$state.go('app.karaoke');
