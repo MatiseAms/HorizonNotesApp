@@ -15,13 +15,13 @@ angular.module('starter.controllers', [])
 			$ionicNavBarDelegate.showBackButton(false);
 		}
 
-		// $scope.username = 'Sil van Diepen';
-		// $scope.userimage =  'http://vignette4.wikia.nocookie.net/muppet/images/e/ed/Ienie.jpg/revision/latest?cb=20060104011211';
+		$scope.username = 'Sil van Diepen';
+		$scope.userimage =  'http://vignette4.wikia.nocookie.net/muppet/images/e/ed/Ienie.jpg/revision/latest?cb=20060104011211';
 		// $scope.username = 'Tim Borst';
 		// $scope.userimage = 'http://sesamstraat.ntr.nl/site/data/foto/tommie/img/01.jpg';
 
-		$scope.username = 'Stephan Hoogland';
-		$scope.userimage = 'http://radio.nl/i/796244/bodytext_image/250/970/ntr-overweegt-stappen-tegen-porno-pino';
+		// $scope.username = 'Stephan Hoogland';
+		// $scope.userimage = 'http://radio.nl/i/796244/bodytext_image/250/970/ntr-overweegt-stappen-tegen-porno-pino';
 
 		// $scope.username = 'Maurits Meester';
 		// $scope.userimage = 'https://pbs.twimg.com/profile_images/439462178601463808/iJTi9Tw-.png';
