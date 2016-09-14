@@ -1,6 +1,5 @@
 <ion-view view-title="Login">
 	<ion-header-bar>
-		<h1 class="title">Login</h1>hello
 		<div class="buttons">
 			<button class="button button-clear" ng-click="closeLogin()">Close</button>
 		</div>
@@ -16,13 +15,20 @@
 					<label>Password</label>
 					<input type="password" placeholder="@4ppathon!" ng-model="loginData.password">
 
-					<button class="btn-ghost btn-round" type="submit">Log in</button>
+					<button class="button ghost" type="submit">Log in</button>
 
 					<div class="spacer">of</div>
 
-					<a class="button rounded facebook" ng-click="loginFacebook()">Facebook Login</a>
 				</form>
 			</div>
+      <div class="container_block green text-center">
+
+
+        <p>Or login using your Facebook account</p>
+        <p>&nbsp;</p>
+        <a class="button rounded facebook" ng-click="loginFacebook()">Facebook Login</a>
+
+      </div>
 		</div>
 	</ion-pane>
 </ion-view>

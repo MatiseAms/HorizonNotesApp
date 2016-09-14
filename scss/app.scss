@@ -16,27 +16,39 @@
 
 body{ background: color(groen); }
 
-.container{ min-height: 100vh; background: color(grijs);
+.container{ min-height: 100vh; background: color(wit); display: flex; flex-direction: column;
   &_block{ padding: 2rem 40px 2rem 40px; width: 100%;
+
+    // If only one element
+    &:first-child:last-child{ min-height: 100vh;  }
+    // If two elements
+    &:first-child + &:last-child{ position: absolute; bottom: 0;  }
+
     &:first-child(){ padding-top: 100px;
       h1{ margin-top: 1.5rem; }
     }
     &:last-child(){ padding-bottom: 40px; }
-    &.white{ background: color(wit); }
-    &.green{ background: color(groen); }
+
+    &.white{ background: color(wit); color: color(groen); }
+    &.green{ background: color(groen); color: color(zwart); }
+    &.black{ background: color(zwart); color: color(wit); }
 
     h1{ font-size: rem(40); line-height: rem(50); font-weight: $font-medium; }
   }
 }
 div.title.title-center.header-item{ left: 0 !important; }
 .title{ height: 100px; line-height: 100px; width: 100%;
-  background-image: url('../img/logo.svg'); left: 0; text-indent: -999em;
+  background-image: url('../img/logo-zwart.svg'); left: 0; text-indent: -999em;
   background-repeat: no-repeat; background-position: 35px center;
+  .state-prekaraoke &{ background-image: url('../img/logo-groen.svg');  }
 }
 
 .menuToggle{ width: 100px; height: 100px; position: absolute; right: 20px; top: 0px;
   span{ @include menu(rem(30),rem(2),rem(6),black);
-    @include menu-body-middle{ width: rem(20); }
+    .state-prekaraoke & { @include menu(rem(30),rem(2),rem(6),color(groen)); }
+    @include menu-body-middle{
+      &,.state-prekaraoke & { width: rem(20); }
+    }
   }
 }
 .activated + .menuToggle span{
@@ -44,7 +56,11 @@ div.title.title-center.header-item{ left: 0 !important; }
   @include menu-body-middle{ width: rem(30); }
   @include menu-body-last{ width: rem(20); }
 }
-
+h1{
+  &.white{ color: color(wit); }
+  &.black{ color: color(zwart); }
+  &.green{ color: color(groen); }
+}
 
 .moreinfo{ display: inline-block; width: 2.5rem; height: 2.5rem; border-radius: 1.25rem; line-height: 2.5rem; text-align: center; color: color(zwart); font-size: 1.5rem; margin-left: .5rem;
   .green &{ background-color: color(wit); }
@@ -53,6 +69,33 @@ div.title.title-center.header-item{ left: 0 !important; }
 
 #play{
   .timer{ margin-top: 2rem; margin-bottom: -2rem;  }
+}
+#prekaraoke{
+  .row{
+    .column{ width: 100%; position: relative; margin-top: 3rem;
+      .icon-close{ padding-left: 1.5rem; line-height: 1rem; position: absolute; top: 50%; margin-top: -1rem; font-size: 1rem; color: color(groen);
+        &:before{ font-size: 1rem; position: absolute; left: 0px; top: 2px;  }
+      }
+    }
+  }
+}
+
+#karaoke{
+  .background{ position: absolute; left: 50%; top: 50%; width: 100%; height: 100%; animation: comeDown 1s forwards; transform: translate(-50%,-50%);
+    &:before{ content:""; display: block; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-image: url('../img/mic-zwart.svg'); background-size: 140% auto; background-position: bottom center; background-repeat: no-repeat; transform: rotate(180deg); }
+  }
+  h3{ position: absolute; width: 100%; text-align: center; left: 0; animation: comeDownTitle 1s .5s forwards; bottom: -100%; }
+  .button.close{ position: absolute; bottom: rem(20); right: rem(20); }
+  @at-root{
+    @include keyframes(comeDown){
+      0%{ top: -100%; }
+      100%{ top: 50%; }
+    }
+    @include keyframes(comeDownTitle){
+      0%{ bottom: -100%; }
+      100%{ bottom: 23%; }
+    }
+  }
 }
 
 .buttons{

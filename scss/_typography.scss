@@ -32,10 +32,10 @@ $main: #{$main-font},sans-serif;
 //
 
 $icon-font: "Notes";
-// $icon-font-name: "snapbox";
+$icon-font-name: "notes";
 $icon-font-family: #{$icon-font},sans-serif;
 // include main font
-// @include font-include($icon-font,$icon-font-name,normal,normal);
+@include font-include($icon-font,$icon-font-name,normal,normal);
 
 *{ }
 
