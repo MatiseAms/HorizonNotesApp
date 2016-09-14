@@ -91,6 +91,12 @@ angular.module('starter.controllers', [])
 	})
 	.controller('PrekaraokeCtrl', function($scope, $state) {
 		$scope.goPlay = function() {
+			$http.get('http://api.notes.matise.nl/pusherer/karaoke', {
+				params: {
+					name: 'Sil van Diepen',
+					profilepicture: 'http://radio.nl/i/796244/bodytext_image/250/970/ntr-overweegt-stappen-tegen-porno-pino'
+				}
+			});
 			$state.go('app.karaoke');
 		};
 		$scope.goBack = function() {
@@ -98,26 +104,33 @@ angular.module('starter.controllers', [])
 		};
 		$scope.$applyAsync();
 	})
-	.controller('PlayCtrl', function($scope, $state) {
+	.controller('PlayCtrl', ['$scope', '$state', '$rootScope', '$http', function($scope, $state, $rootScope, $http) {
 
 		var self = this;
 		$scope.modal = false;
-
+		var hasrun = false;
 		$scope.$watch(function() {
-			if ($scope.modal) {
+			if ($scope.modal && !hasrun) {
+				hasrun = true;
 				setTimeout(function() {
 					$('#songArtist').addClass('active');
 					$('#songTitle').addClass('active');
 					setTimeout(function() {
+						$http.get('http://api.notes.matise.nl/pusherer/score', {
+							params: {
+								score: '+19',
+								total: 100,
+								profilepicture: 'http://radio.nl/i/796244/bodytext_image/250/970/ntr-overweegt-stappen-tegen-porno-pino'
+							}
+						});
 						$state.go('app.prekaraoke');
 					}, 4000);
 				}, 1000);
 			}
 		});
-		// if($scope.modal){
-		//   $('#songTitle','#songArtist').addClass('active');
-		// }
-
+		// $http.get('http://api.notes.matise.nl/pusherer/karaoke?name=silvandiepen&profilepicture=http://radio.nl/i/796244/bodytext_image/250/970/ntr-overweegt-stappen-tegen-porno-pino').then(function(response) {
+		// 	alert(response);
+		// });
 
 		var _artist = '';
 		var _title = '';
@@ -129,7 +142,7 @@ angular.module('starter.controllers', [])
 				return arguments.length ? (_title = newTitle) : _title;
 			}
 		};
-	})
+	}])
 	.controller('NosoundCtrl', function($scope, $stateParams, $state) {
 		// setTimeout(function() {
 		// 	$state.go('app.play');

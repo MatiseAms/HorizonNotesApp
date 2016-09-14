@@ -10,7 +10,7 @@ angular.module('starter', [
 	'ngCordova'
 ])
 
-.run(['$ionicPlatform', '$state', function($ionicPlatform, $state) {
+.run(['$ionicPlatform', '$state', '$rootScope', function($ionicPlatform, $state, $rootScope) {
 	$ionicPlatform.ready(function() {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
 		// for form inputs)
@@ -37,7 +37,9 @@ angular.module('starter', [
 	});
 
 	var channel = pusher.subscribe('game');
-	channel.bind('newsong', function(data) {
+	channel.bind('newSong', function(data) {
+		$rootScope.songTitle = data;
+		$rootScope.songArtist = data;
 		$state.go('app.play');
 	});
 }])
