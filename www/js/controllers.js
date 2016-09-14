@@ -86,6 +86,18 @@ angular.module('starter.controllers', [])
 			}
 		}, 300);
 
+		// Enable pusher logging - don't include this in production
+		Pusher.logToConsole = true;
+
+		var pusher = new Pusher('e28b6f53404860a0e3bd', {
+			cluster: 'eu',
+			encrypted: true
+		});
+
+		var channel = pusher.subscribe('game');
+		channel.bind('newsong', function(data) {
+			alert(data.message);
+		});
 
 	}])
 	.controller('PlaylistCtrl', function($scope, $stateParams) {
@@ -95,30 +107,16 @@ angular.module('starter.controllers', [])
 		// 	console.log(event.type, event.payload);
 		// }).subscribeTo(room, ['onConnected', 'onDisconnected', 'onCreated', 'onDestroyed', 'onJoined', 'onHasLeft', 'onData', 'onError']);
 
-
-
 	})
-	.controller('LoginCtrl', ['$scope', '$state', '$q', '$cordovaFacebook', '$rootScope', '$ionicHistory', function($scope, $state, $q, $cordovaFacebook, $rootScope, $ionicHistory) {
+	.controller('LoginCtrl', ['$scope', '$state', '$q', '$cordovaFacebook', '$rootScope', '$ionicHistory', '$http', function($scope, $state, $q, $cordovaFacebook, $rootScope, $ionicHistory, $http) {
 
 		$scope.loginFacebook = function() {
 
-			$cordovaFacebook.login(["public_profile", "email"]).then(function(success) {
-				console.log(success);
-
-				//Need to convert expiresIn format from FB to date
-				var expiration_date = new Date();
-				expiration_date.setSeconds(expiration_date.getSeconds() + success.authResponse.expiresIn);
-				expiration_date = expiration_date.toISOString();
-
-				var facebookAuthData = {
-					"id": success.authResponse.userID,
-					"access_token": success.authResponse.accessToken,
-					"expiration_date": expiration_date
-				};
-
-				// console.log('userId: ' + profileInfo.id);
-				// console.log('name: ' + profileInfo.name);
-				// console.log('email: ' + profileInfo.email);
+			$cordovaFacebook.login(["public_profile"]).then(function(success) {
+				console.log(response);
+				// console.log('fbName', httpResponse.data.name);
+				// console.log('email', httpResponse.data.email);
+				// console.log('fbImageUrl', 'https://graph.facebook.com/' + user.get('authData').facebook.id + '/picture?type=large');
 			}, function(fail) {
 				// Fail get profile info
 				console.log('profile info fail', fail);
