@@ -1,5 +1,5 @@
 angular.module('starter.controllers', [])
-	.controller('AppCtrl', function($scope, $ionicModal, $timeout,$location, $ionicNavBarDelegate) {
+	.controller('AppCtrl', function($scope, $ionicModal, $timeout, $location, $ionicNavBarDelegate) {
 
 		// With the new view caching in Ionic, Controllers are only called
 		// when they are recreated or on app start, instead of every page change.
@@ -8,12 +8,12 @@ angular.module('starter.controllers', [])
 		//$scope.$on('$ionicView.enter', function(e) {
 		//});
 
-    var path = $location.path();
-    if (path.indexOf('submit') != -1){
-      $ionicNavBarDelegate.showBackButton(false);
-    } else {
-      $ionicNavBarDelegate.showBackButton(false);
-    }
+		var path = $location.path();
+		if (path.indexOf('submit') != -1) {
+			$ionicNavBarDelegate.showBackButton(false);
+		} else {
+			$ionicNavBarDelegate.showBackButton(false);
+		}
 
 		$scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
 			var fromClass = fromState.name.replace('app.', 'state-');
@@ -80,19 +80,6 @@ angular.module('starter.controllers', [])
 			}
 		}, 300);
 
-		// Enable pusher logging - don't include this in production
-		Pusher.logToConsole = true;
-
-		var pusher = new Pusher('e28b6f53404860a0e3bd', {
-			cluster: 'eu',
-			encrypted: true
-		});
-
-		var channel = pusher.subscribe('game');
-		channel.bind('newsong', function(data) {
-			alert(data.message);
-		});
-
 	}])
 	.controller('KaraokeCtrl', function($scope) {
 		$scope.song = {
@@ -102,15 +89,15 @@ angular.module('starter.controllers', [])
 		$scope.$applyAsync();
 		console.log($scope.song);
 	})
-	.controller('PrekaraokeCtrl', function($scope,$state) {
-    $scope.goPlay = function(){
-      $state.go('app.karaoke');
-    };
-    $scope.goBack = function(){
-      $state.go('app.nosound');
-    };
-    $scope.$applyAsync();
-  })
+	.controller('PrekaraokeCtrl', function($scope, $state) {
+		$scope.goPlay = function() {
+			$state.go('app.karaoke');
+		};
+		$scope.goBack = function() {
+			$state.go('app.nosound');
+		};
+		$scope.$applyAsync();
+	})
 	.controller('PlayCtrl', function($scope, $state) {
 
 		var self = this;
@@ -144,9 +131,9 @@ angular.module('starter.controllers', [])
 		};
 	})
 	.controller('NosoundCtrl', function($scope, $stateParams, $state) {
-		setTimeout(function() {
-			$state.go('app.play');
-		}, 3000);
+		// setTimeout(function() {
+		// 	$state.go('app.play');
+		// }, 3000);
 	})
 	.controller('LoginCtrl', ['$scope', '$state', '$q', '$cordovaFacebook', '$rootScope', '$ionicHistory', '$http', function($scope, $state, $q, $cordovaFacebook, $rootScope, $ionicHistory, $http) {
 
