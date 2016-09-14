@@ -27,14 +27,22 @@
 			<div class="container_block green">
 				<form>
 					<label>Artist:</label>
-					<input type="text" placeholder="Mees Master" />
+					<input type="text" placeholder="Mees Master" ng-model="song.artist" ng-model-options="{ getterSetter: true }"/>
 					<label>Song:</label>
-					<input type="text" placeholder="Brother from another mother" />
+					<input type="text" placeholder="Brother from another mother" ng-model="song.title" ng-model-options="{ getterSetter: true }" />
 				</form>
 				<div class="block align-right">
-					<a href="#" class="button black round large float-right horizon-line go">Go</a>
+					<a href="#" ng-click="modal = true" class="button black round large float-right horizon-line go">Go</a>
 				</div>
 			</div>
 		</div>
+    <div class="modal" ng-class="{'active': modal}">
+      <div class="modal-bg"></div>
+      <div class="modal-content">
+        <h3 id="songArtist" class="good" ng-bind="song.artist()"></h3>
+        <hr />
+        <h3 id="songTitle" class="wrong green" ng-bind="song.title()"></h3>
+      </div>
+    </div>
 	</ion-pane>
 </ion-view>

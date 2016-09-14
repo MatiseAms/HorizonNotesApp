@@ -56,7 +56,7 @@ div.title.title-center.header-item{ left: 0 !important; }
   @include menu-body-middle{ width: rem(30); }
   @include menu-body-last{ width: rem(20); }
 }
-h1{
+h1,h2,h3{
   &.white{ color: color(wit); }
   &.black{ color: color(zwart); }
   &.green{ color: color(groen); }

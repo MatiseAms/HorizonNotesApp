@@ -81,9 +81,43 @@ angular.module('starter.controllers', [])
     console.log($scope.song);
   })
 	.controller('PrekaraokeCtrl', function($scope, $stateParams) {
-    $scope.artist = "Drake";
-    $scope.title = "one love";
-    $scope.$apply();
+	})
+	.controller('PlayCtrl', function($scope, $stateParams,$state) {
+
+    var self = this;
+    $scope.modal = false;
+
+    $scope.$watch(function(){
+      if($scope.modal){
+        setTimeout(function(){
+          $('#songArtist').addClass('active');
+          $('#songTitle').addClass('active');
+          setTimeout(function(){
+            $state.go('app.prekaraoke');
+          },4000);
+        },1000);
+      }
+    });
+    // if($scope.modal){
+    //   $('#songTitle','#songArtist').addClass('active');
+    // }
+
+
+    var _artist = '';
+    var _title = '';
+    $scope.song = {
+      artist: function(newArtist) {
+       return arguments.length ? (_artist = newArtist) : _artist;
+      },
+      title: function(newTitle) {
+       return arguments.length ? (_title = newTitle) : _title;
+      }
+    };
+	})
+	.controller('NosoundCtrl', function($scope, $stateParams,$state) {
+    setTimeout(function(){
+      $state.go('app.play');
+    },3000);
 	})
 	.controller('LoginCtrl', function($scope, $stateParams) {
     $scope.artist = "Drake";

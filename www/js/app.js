@@ -41,7 +41,8 @@ angular.module('starter', [
 			url: '/nosound',
 			views: {
 				'menuContent': {
-					templateUrl: 'templates/nosound.html'
+					templateUrl: 'templates/nosound.html',
+					controller: 'NosoundCtrl'
 				}
 			}
 		})
