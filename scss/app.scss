@@ -88,8 +88,10 @@ h1,h2,h3{
   .background{ position: absolute; left: 50%; top: 50%; width: 100%; height: 100%; animation: comeDown 1s forwards; transform: translate(-50%,-50%);
     &:before{ content:""; display: block; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-image: url('../img/mic-zwart.svg'); background-size: 140% auto; background-position: bottom center; background-repeat: no-repeat; transform: rotate(180deg); }
   }
-  h3{ position: absolute; width: 100%; text-align: center; left: 0; animation: comeDownTitle 1s .5s forwards; bottom: -100%; transform: rotate(180deg); }
-  .button.close{ position: absolute; bottom: rem(20); right: rem(20); }
+  h3{ position: absolute; width: 100%; text-align: center; left: 0; animation: comeDownTitle 1s .5s forwards; bottom: -100%; transform: rotate(180deg); font-weight: $font-medium;
+    span{ font-weight: $font-bold; }
+  }
+  .button.close{ position: absolute; left: rem(20); top: rem(20); width: 80px; height: 80px }
   @at-root{
     @include keyframes(comeDown){
       0%{ top: -100%; }
@@ -97,7 +99,7 @@ h1,h2,h3{
     }
     @include keyframes(comeDownTitle){
       0%{ bottom: -100%; }
-      100%{ bottom: 23%; }
+      100%{ bottom: 15%; }
     }
   }
 }

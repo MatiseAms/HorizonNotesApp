@@ -55,7 +55,35 @@ angular.module('starter.controllers', [])
 		};
 	})
 	.controller('PlayCtrl', ['$scope', '$interval', function($scope, $interval) {
-		$scope.number = 30;
+
+    		var self = this;
+    		$scope.modal = false;
+
+    		$scope.$watch(function() {
+    			if ($scope.modal) {
+    				setTimeout(function() {
+    					$('#songArtist').addClass('active');
+    					$('#songTitle').addClass('active');
+    					setTimeout(function() {
+    						$state.go('app.prekaraoke');
+    					}, 4000);
+    				}, 1000);
+    			}
+    		});
+
+
+    		var _artist = '';
+    		var _title = '';
+    		$scope.song = {
+    			artist: function(newArtist) {
+    				return arguments.length ? (_artist = newArtist) : _artist;
+    			},
+    			title: function(newTitle) {
+    				return arguments.length ? (_title = newTitle) : _title;
+    			}
+    		};
+
+    $scope.number = 30;
 		$scope.getNumber = function(num) {
 			return new Array(num);
 		};
@@ -111,42 +139,11 @@ angular.module('starter.controllers', [])
     };
     $scope.$applyAsync();
   })
-	.controller('PlayCtrl', function($scope, $state) {
 
-		var self = this;
-		$scope.modal = false;
-
-		$scope.$watch(function() {
-			if ($scope.modal) {
-				setTimeout(function() {
-					$('#songArtist').addClass('active');
-					$('#songTitle').addClass('active');
-					setTimeout(function() {
-						$state.go('app.prekaraoke');
-					}, 4000);
-				}, 1000);
-			}
-		});
-		// if($scope.modal){
-		//   $('#songTitle','#songArtist').addClass('active');
-		// }
-
-
-		var _artist = '';
-		var _title = '';
-		$scope.song = {
-			artist: function(newArtist) {
-				return arguments.length ? (_artist = newArtist) : _artist;
-			},
-			title: function(newTitle) {
-				return arguments.length ? (_title = newTitle) : _title;
-			}
-		};
-	})
 	.controller('NosoundCtrl', function($scope, $stateParams, $state) {
-		setTimeout(function() {
+    $scope.goPlay = function() {
 			$state.go('app.play');
-		}, 3000);
+		};
 	})
 	.controller('LoginCtrl', ['$scope', '$state', '$q', '$cordovaFacebook', '$rootScope', '$ionicHistory', '$http', function($scope, $state, $q, $cordovaFacebook, $rootScope, $ionicHistory, $http) {
 
